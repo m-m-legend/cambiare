@@ -3,7 +3,7 @@ import requests
 API_URL = "https://open.er-api.com/v6/latest/{}"
 
 SUPPORTED_CURRENCIES = ["BRL", "USD", "EUR", "JPY", "CAD"]
-
+# Taxas de câmbio
 def get_exchange_rates(base_currency):
     try:
         response = requests.get(API_URL.format(base_currency), timeout=5)

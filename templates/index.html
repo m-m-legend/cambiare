@@ -2,117 +2,335 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Conversor de Câmbio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiare | Dashboard Financeiro</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     <style>
+        :root {
+            --bg-body: #f0f2f5;
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --pos: #10b981;
+            --neg: #ef4444;
+            --neutral: #94a3b8;
+            --border: #e2e8f0;
+        }
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f8;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
             margin: 0;
-            padding: 40px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
         }
 
         .container {
-            max-width: 700px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
-        h1, h2 {
-            color: #2c3e50;
+        h1 {
+            font-size: 1.75rem;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: -0.025em;
         }
 
-        label {
-            font-weight: bold;
+        h2 {
+            font-size: 1.1rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
         }
+
+        /* Formulário Elegante */
+        .converter-card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            align-items: end;
+        }
+
+        @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+
+        label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
 
         input, select {
-            padding: 6px;
-            margin: 6px 0 12px 0;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
             width: 100%;
+            font-size: 1rem;
+            box-sizing: border-box;
         }
 
         button {
-            background-color: #3498db;
+            background-color: var(--primary);
             color: white;
             border: none;
-            padding: 10px;
-            width: 100%;
-            border-radius: 4px;
+            padding: 11px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            font-weight: 600;
+            transition: 0.2s;
         }
 
-        button:hover {
-            background-color: #2980b9;
-        }
+        button:hover { background-color: var(--primary-hover); transform: translateY(-1px); }
 
-        .result {
-            background-color: #ecf0f1;
-            padding: 15px;
-            border-radius: 6px;
+        .result-box {
             margin-top: 20px;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
         }
 
-        ul {
-            padding-left: 20px;
+        /* Grid de Cards Unificado */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
         }
 
-        small {
-            display: block;
-            margin-top: 20px;
-            color: #7f8c8d;
+        .card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            transition: 0.2s;
         }
+
+        .card:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+        .card strong { font-size: 0.9rem; display: block; margin-bottom: 4px; }
+        
+        /* Badges de Cores */
+        .pos { color: var(--pos); }
+        .neg { color: var(--neg); }
+        .neutral { color: var(--neutral); }
+
+        .performance-val { font-size: 1.1rem; font-weight: 800; }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Estilo do Logo */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .logo-text {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin: 0;
+            color: var(--text-dark);
+        }
+
+        .logo-text span {
+            color: var(--primary);
+            font-weight: 400;
+        }
+
+        /* Botão Flutuante de Tema */
+        .theme-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 1000;
+        }
+
+        /* Definições do Tema Escuro */
+        body.dark-mode {
+            --bg-body: #0f172a;
+            --glass-bg: #1e293b;
+            --text-dark: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+
+        body.dark-mode .converter-card { background: #1e293b; }
+        body.dark-mode .card { background: #0f172a; }
+        body.dark-mode input, body.dark-mode select { 
+            background: #1e293b; 
+            color: white; 
+            border-color: #334155; 
+}
+        body.dark-mode .logo-icon {
+        background: var(--primary); 
+        color: white;               
+    }
+        
     </style>
 </head>
-
 <body>
+
 <div class="container">
-
-<h1>Conversão de Câmbio em Tempo Real</h1>
-
-<form method="post">
-    <label>Valor</label>
-    <input type="number" step="0.01" name="amount" value="{{ amount }}">
-
-    <label>Moeda Origem</label>
-    <select name="base">
-        {% for c in currencies %}
-            <option value="{{ c }}" {% if c == base %}selected{% endif %}>{{ c }}</option>
-        {% endfor %}
-    </select>
-
-    <label>Moeda Destino</label>
-    <select name="target">
-        {% for c in currencies %}
-            <option value="{{ c }}" {% if c == target %}selected{% endif %}>{{ c }}</option>
-        {% endfor %}
-    </select>
-
-    <button type="submit">Converter</button>
-</form>
-
-{% if converted_value %}
-<div class="result">
-    <h2>Resultado</h2>
-    <p><strong>{{ amount }} {{ base }}</strong> = <strong>{{ converted_value }} {{ target }}</strong></p>
+    <button id="theme-toggle" class="theme-btn">
+    <span id="theme-icon">🌙</span>
+    </button>
+    <div class="logo-container">
+    <div class="logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 16 4 4 4-4"></path>
+            <path d="M7 20V4"></path>
+            <path d="m21 8-4-4-4 4"></path>
+            <path d="M17 4v16"></path>
+        </svg>
+    </div>
+    <h1 class="logo-text">Cambiare<span>Agent</span></h1>
 </div>
-{% endif %}
 
-<h2>Setores Interessantes para Investimento</h2>
-<ul>
-    {% for sector in sectors %}
-        <li>{{ sector }}</li>
-    {% endfor %}
-</ul>
+    <div class="converter-card">
+        <form method="post" class="form-grid">
+            <div>
+                <label>Valor</label>
+                <input type="number" step="0.01" name="amount" value="{{ amount }}">
+            </div>
+            <div>
+                <label>De/Para</label>
+                <div style="display: flex; gap: 5px;">
+                    <select name="base">
+                        {% for c in currencies %}
+                            <option value="{{ c }}" {% if c == base %}selected{% endif %}>{{ c }}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="target">
+                        {% for c in currencies %}
+                            <option value="{{ c }}" {% if c == target %}selected{% endif %}>{{ c }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button type="submit">Converter</button>
+        </form>
 
-<small>
-    * Informações educacionais. Não constitui recomendação financeira.
-</small>
+        {% if converted_value %}
+        <div class="result-box">
+            {{ amount }} {{ base }} = {{ converted_value }} {{ target }}
+        </div>
+        {% endif %}
+    </div>
 
+    <h2>Insights de Hoje</h2>
+    <div class="grid-container">
+        {% for s in sectors %}
+        <div class="card">
+            <strong>{{ s.sector }}</strong>
+            <span class="performance-val {% if '-' in s.performance %}neg{% elif '0.0%' == s.performance %}neutral{% else %}pos{% endif %}">
+                {{ s.performance }}
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Bolsas Globais</h2>
+    <div class="grid-container">
+        {% for index in market_indices %}
+        <div class="card">
+            <strong>{{ index.sector }}</strong>
+            <span class="performance-val {% if index.performance < 0 %}neg{% elif index.performance > 0 %}pos{% else %}neutral{% endif %}">
+                {{ index.performance }}%
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Setores (EUA)</h2>
+    <div class="grid-container">
+        {% for s in all_sectors %}
+        <div class="card">
+            <strong>{{ s.sector }}</strong>
+            <span class="performance-val {% if s.raw_perf < 0 %}neg{% elif s.raw_perf > 0 %}pos{% else %}neutral{% endif %}">
+                {{ s.performance }}
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <footer>
+        <p>* Informações educacionais. Não constitui recomendação financeira.</p>
+        <p>* Dados de índices baseados em ETFs (SPY, QQQ, EWZ, EWU).</p>
+        <strong>© 2026 Cambiare Agent</strong>
+    </footer>
 </div>
+
+<script>
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const body = document.body;
+
+    // Verifica se o usuário já tinha uma preferência salva
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+        themeIcon.innerText = '☀️';
+    }
+
+    themeBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+            themeIcon.innerText = '☀️';
+        } else {
+            localStorage.setItem('theme', 'light');
+            themeIcon.innerText = '🌙';
+        }
+    });
+</script>
+
 </body>
 </html>

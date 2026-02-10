@@ -1,45 +1,76 @@
-# Projeto Cambiare – Conversão de Câmbio em Tempo Real
+# 💹 Cambiare Agent -- Inteligência de Câmbio & Mercado
 
-Este projeto é uma aplicação web simples desenvolvida com **Flask**, cujo objetivo é:
+O **Cambiare Agent** é um Dashboard Financeiro moderno que combina
+conversão de moedas em tempo real com insights estratégicos de mercado
+global. Desenvolvido para oferecer uma experiência de usuário (UX)
+fluida, o agente monitora a performance de ETFs e índices mundiais para
+auxiliar na visualização de tendências econômicas.
 
-- Converter câmbio em tempo quase real entre as principais moedas:
-  - BRL (Real)
-  - USD (Dólar Americano)
-  - EUR (Euro)
-  - JPY (Iene)
-  - CAD (Dólar Canadense)
-- Indicar automaticamente:
-  - A moeda mais forte no momento (com base em heurística simples)
-  - Setores de ações considerados resilientes para investidores iniciantes
+------------------------------------------------------------------------
 
-> ⚠️ Este projeto tem finalidade **educacional** e **não constitui recomendação financeira**.
+## 🚀 Funcionalidades
 
----
+-   **Conversão de Câmbio Real-Time:** Integração com APIs financeiras para as principais moedas globais (BRL, USD, EUR, JPY, CAD).
+-   **Market Insights:** Monitoramento de performance diária de ETFs setoriais e índices das principais bolsas mundiais (S&P 500, Nasdaq, Ibovespa, etc.).
+-   **UI/UX Moderna:** Interface responsiva com Glassmorphism, tipografia refinada e cards de dados homogêneos.
+-   **Smart Dark Mode:** Sistema de troca de tema (Light/Dark) com persistência via `localStorage`.
+-   **Arquitetura Escalável:** Separação clara entre serviços de dados, lógica de backend (Flask) e interface.
 
-## Requisitos
+------------------------------------------------------------------------
 
-- Python 3.9 ou superior
-- pip (gerenciador de pacotes do Python)
+## 🛠️ Tecnologias Utilizadas
 
----
+-   **Backend:** Python 3.9+ com [Flask](https://flask.palletsprojects.com/)
+-   **Frontend:** HTML5, CSS3 (Variáveis Modernas, Flexbox/Grid) e JavaScript Vanilla
+-   **APIs de Dados:** Finnhub API e ER API (Dados de mercado e ETFs)
+-   **Integração:** Requests (Consumo de APIs REST)
 
-## Instalação
+------------------------------------------------------------------------
 
-1. Clone o repositório ou copie os arquivos do projeto
-2. No diretório raiz do projeto, execute:
+## 📦 Como Instalar e Rodar
 
-```bash
-pip install -r requirements.txt
-```
+1.  **Clone o repositório:**
 
----
+    ``` bash
+    git clone https://github.com/m-m-legend/cambiare.git
+    cd cambiare
+    ```
 
-## Execução
+2.  **Configure o ambiente virtual:**
 
-```bash
-python app.py
+    ``` bash
+    python -m venv venv
+    source venv/bin/activate  # No Windows: venv\Scripts\activate
+    ```
 
-http://127.0.0.1:5000
+3.  **Instale as dependências:**
 
-```
+    ``` bash
+    pip install -r requirements.txt
+    ```
 
+4.  **Configure suas chaves:** crie um arquivo .env na raiz do projeto e
+    adicione sua chave da API
+
+    ``` bash
+    FINNHUB_API_KEY=sua_chave_aqui
+    ```
+
+5.  **Execute a aplicação:**
+
+    ``` bash
+    python app.py
+    ```
+
+------------------------------------------------------------------------
+
+## ⚖️ Disclaimer
+
+Este projeto tem finalidade estritamente educacional. Os dados de
+mercado podem apresentar atrasos conforme as limitações das APIs
+gratuitas. Não constitui recomendação de investimento ou aconselhamento
+financeiro profissional.
+
+## 📸 Preview da interface
+
+![Interface](interface.png)
