@@ -1,76 +1,51 @@
-# 💹 Cambiare Agent -- Inteligência de Câmbio & Mercado
-
-O **Cambiare Agent** é um Dashboard Financeiro moderno que combina
-conversão de moedas em tempo real com insights estratégicos de mercado
-global. Desenvolvido para oferecer uma experiência de usuário (UX)
-fluida, o agente monitora a performance de ETFs e índices mundiais para
-auxiliar na visualização de tendências econômicas.
-
+# 💹 Cambiare Agent -- Currency Intelligence & Market
+The **Cambiare Agent** is a modern Financial Dashboard that combines
+real-time currency conversion with strategic insights from the global
+market. Developed to offer a fluid user experience (UX), the agent
+monitors the performance of ETFs and world indices to assist in
+visualizing economic trends.
 ------------------------------------------------------------------------
-
-## 🚀 Funcionalidades
-
--   **Conversão de Câmbio Real-Time:** Integração com APIs financeiras para as principais moedas globais (BRL, USD, EUR, JPY, CAD).
--   **Market Insights:** Monitoramento de performance diária de ETFs setoriais e índices das principais bolsas mundiais (S&P 500, Nasdaq, Ibovespa, etc.).
--   **UI/UX Moderna:** Interface responsiva com Glassmorphism, tipografia refinada e cards de dados homogêneos.
--   **Smart Dark Mode:** Sistema de troca de tema (Light/Dark) com persistência via `localStorage`.
--   **Arquitetura Escalável:** Separação clara entre serviços de dados, lógica de backend (Flask) e interface.
-
+## 🚀 Features
+-   **Real-Time Currency Conversion:** Integration with financial APIs for major global currencies (BRL, USD, EUR, JPY, CAD).
+-   **Market Insights:** Daily performance monitoring of sectoral ETFs and indices from major world exchanges (S&P 500, Nasdaq, Ibovespa, etc.).
+-   **Modern UI/UX:** Responsive interface with Glassmorphism, refined typography and homogeneous data cards.
+-   **Smart Dark Mode:** Theme switching system (Light/Dark) with persistence via `localStorage`.
+-   **Scalable Architecture:** Clear separation between data services, backend logic (Flask) and interface.
 ------------------------------------------------------------------------
-
-## 🛠️ Tecnologias Utilizadas
-
--   **Backend:** Python 3.9+ com [Flask](https://flask.palletsprojects.com/)
--   **Frontend:** HTML5, CSS3 (Variáveis Modernas, Flexbox/Grid) e JavaScript Vanilla
--   **APIs de Dados:** Finnhub API e ER API (Dados de mercado e ETFs)
--   **Integração:** Requests (Consumo de APIs REST)
-
+## 🛠️ Technologies Used
+-   **Backend:** Python 3.9+ with [Flask](https://flask.palletsprojects.com/)
+-   **Frontend:** HTML5, CSS3 (Modern Variables, Flexbox/Grid) and Vanilla JavaScript
+-   **Data APIs:** Finnhub API and ER API (Market data and ETFs)
+-   **Integration:** Requests (REST API Consumption)
 ------------------------------------------------------------------------
-
-## 📦 Como Instalar e Rodar
-
-1.  **Clone o repositório:**
-
+## 📦 How to Install and Run
+1.  **Clone the repository:**
     ``` bash
     git clone https://github.com/m-m-legend/cambiare.git
     cd cambiare
     ```
-
-2.  **Configure o ambiente virtual:**
-
+2.  **Configure the virtual environment:**
     ``` bash
     python -m venv venv
-    source venv/bin/activate  # No Windows: venv\Scripts\activate
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
     ```
-
-3.  **Instale as dependências:**
-
+3.  **Install dependencies:**
     ``` bash
     pip install -r requirements.txt
     ```
-
-4.  **Configure suas chaves:** crie um arquivo .env na raiz do projeto e
-    adicione sua chave da API
-
+4.  **Configure your keys:** create a .env file at the root of the project and
+    add your API key
     ``` bash
-    FINNHUB_API_KEY=sua_chave_aqui
+    FINNHUB_API_KEY=your_key_here
     ```
-
-5.  **Execute a aplicação:**
-
+5.  **Run the application:**
     ``` bash
     python app.py
     ```
-
 ------------------------------------------------------------------------
-
 ## ⚖️ Disclaimer
-
-Este projeto tem finalidade estritamente educacional. Os dados de
-mercado podem apresentar atrasos conforme as limitações das APIs
-gratuitas. Não constitui recomendação de investimento ou aconselhamento
-financeiro profissional.
-
-## 📸 Preview da interface
-
+This project is strictly for educational purposes. Market data may be
+delayed according to the limitations of free APIs. It does not constitute
+investment recommendation or professional financial advice.
+## 📸 Interface Preview
 ![Interface](interface.png)
